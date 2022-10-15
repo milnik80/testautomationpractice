@@ -1,9 +1,11 @@
 ﻿Feature: MyAccount
-	Simple calculator for adding two numbers
+	In order to find products 
+	As a user
+	I want to be able to login 
 
 @mytag
-Scenario: Add two numbers
-	Given the first number is 50
-	And the second number is 80
-	When the two numbers are added
-	Then the result should be 120
+Scenario: User can login
+	Given User open login page
+	And  enter correct credentials
+	When user submits the form
+	Then user will be logged in
