@@ -17,7 +17,7 @@ namespace TestAutomationPractice.Helper
 
         public string GenerateRandomEmail()
         {
-            return string.Format("email{0}@mailnator.com", RandomName.Next(10000,100000));
+            return string.Format("email{0}@mailnator.com", RandomName.Next(10000, 100000));
         }
         public void ClickOnElement(By locator)
         {
@@ -42,15 +42,46 @@ namespace TestAutomationPractice.Helper
 
         }
 
+        internal void EnterTextInElement(object email1, string email2)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void EnterTextInElement(object email1, object email2)
+        {
+            throw new NotImplementedException();
+        }
+
+
+
+
         public string ReturnTextFromElement(By locator)
         {
             return driver.FindElement(locator).GetAttribute("textContent");
         }
+
+
+
 
         public bool ElementIsDisplayed(By locator)
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
             return wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator)).Displayed;
         }
+        public bool TextPresentInElement(string text)
+        {
+            By TextElement = By.XPath("//*[contains(text(),'" + text + "')]");
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            return wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(TextElement)).Displayed;
+        }
+
+        public IList<IWebElement> ReturnCategoryList(string catName)
+        {
+        By catOption = By.CssSelector(".sf-menu[title='" + catName + "']");
+        IList<IWebElement> category = driver.FindElements(catOption);
+        return category;
+
+            }
     }
+    
 }

@@ -6,19 +6,17 @@ using System.Text;
 
 namespace TestAutomationPractice.Pages
 {
-    class MyAccountPage
+    class PlPage
     {
         readonly IWebDriver driver;
-
-        public By myAccountPage = By.Id("my-account");
-        public By signOutBtn = By.ClassName("logout");
-        
-       
-        public MyAccountPage(IWebDriver driver)
+        public By plPage = By.Id("category");
+        public By firstProduct = By.ClassName("product_img_link");
+        public PlPage(IWebDriver driver)
         {
             this.driver = driver;
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(myAccountPage));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(plPage));
+
         }
     }
 }
