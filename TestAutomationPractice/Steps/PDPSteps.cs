@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
 using TestAutomationPractice.Helper;
@@ -22,14 +23,14 @@ namespace TestAutomationPractice.Steps
         {
             ut.ReturnCategoryList(cat)[1].Click();
         }
-        
+
         [Given(@"opens first product from the list")]
         public void GivenOpensFirstProductFromTheList()
         {
             PlPage plp = new PlPage(Driver);
             ut.ClickOnElement(plp.firstProduct);
         }
-        
+
         [Given(@"increases quantity to '(.*)'")]
         public void GivenIncreasesQuantityTo(string qty)
         {
@@ -38,30 +39,32 @@ namespace TestAutomationPractice.Steps
             Driver.SwitchTo().Frame(Driver.FindElement(iframe));
             PDPage pdp = new PDPage(Driver);
             Driver.FindElement(pdp.quantity).Clear();
-            ut.EnterTextInElement(pdp.quantity,qty);
+            ut.EnterTextInElement(pdp.quantity, qty);
             productData.ProductName = ut.ReturnTextFromElement(pdp.productName);
 
 
 
         }
-        
+
         [When(@"user clicks on add to cart button")]
         public void WhenUserClicksOnAddToCartButton()
         {
             PDPage pdp = new PDPage(Driver);
             ut.ClickOnElement(pdp.addToCartBtn);
         }
-        
+
         [When(@"user proceeds to checkout")]
         public void WhenUserProceedsToCheckout()
         {
-            ScenarioContext.Current.Pending();
+            PDPage pdp = new PDPage(Driver);
+            ut.ClickOnElement(pdp.proceedToChekOut);
         }
-        
+
         [Then(@"cart summary is displayed and product is added to cart")]
-        public void ThenCartSummaryIsDisplayedAndProductIsAddedToCart()
+        public void ThenCartSummaryIsDisplayedAndProductIsAddedToCart(string cartsummary)
         {
-            ScenarioContext.Current.Pending();
+            Assert.That(ut.TextPresentInElement(cartsummary), "cartsummary is not displayed");
+
         }
     }
 }
