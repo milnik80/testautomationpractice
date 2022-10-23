@@ -77,7 +77,7 @@ namespace TestAutomationPractice.Helper
 
         public IList<IWebElement> ReturnCategoryList(string catName)
         {
-        By catOption = By.CssSelector(".sf-menu[title='" + catName + "']");
+        By catOption = By.CssSelector(".sf-menu [title='" + catName + "']");
         IList<IWebElement> category = driver.FindElements(catOption);
         return category;
 
